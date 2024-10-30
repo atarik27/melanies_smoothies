@@ -3,6 +3,11 @@ import streamlit as st
 from snowflake.snowpark import Session
 from snowflake.snowpark.functions import col
 
+# New section to display fruityvice nutrition information
+import requests
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response)
+
 # Initialize the Snowflake session using Streamlit secrets
 session = Session.builder.configs(st.secrets["connections"]["snowflake"]).create()
 
