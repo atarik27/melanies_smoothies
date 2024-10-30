@@ -5,8 +5,6 @@ from snowflake.snowpark.functions import col
 
 # New section to display fruityvice nutrition information
 import requests
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
-st.text(fruityvice_response)
 
 # Initialize the Snowflake session using Streamlit secrets
 session = Session.builder.configs(st.secrets["connections"]["snowflake"]).create()
@@ -36,3 +34,6 @@ time_to_insert = st.button('Submit Order')
 if time_to_insert:
     session.sql(my_insert_stmt).collect()
     st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
+
+fruityvice_response = requests.get("https://fruityvice.com/api/fruit/watermelon")
+st.text(fruityvice_response)
